@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sygara_app/screens/Home/notifikasi_page.dart';
 import 'package:sygara_app/themes/themes.dart';
 
 class MySearchBar extends StatelessWidget {
@@ -33,7 +34,9 @@ class MySearchBar extends StatelessWidget {
         ),
         SizedBox(width: 26),
         IconButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) => NotifikasiPage()));
+          },
           icon: Image.asset('assets/icon/ic-notif.png', width: 45, height: 45),
         ),
       ],
