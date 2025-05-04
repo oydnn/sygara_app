@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sygara_app/screens/Home/succes_page.dart';
 import 'package:sygara_app/themes/themes.dart';
 import 'package:sygara_app/widgets/checkout_widget.dart';
 
@@ -378,11 +379,74 @@ class _CheckoutPageState extends State<CheckoutPage> {
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: Center(
-                  child: Text(
-                    'Beli',
-                    style: primaryTextStyle.copyWith(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
+                  child: InkWell(
+                    onTap: () {
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            title: Center(
+                              child: Text(
+                                'Proses pesanan sekarang?',
+                                style: titleTextStyle,
+                              ),
+                            ),
+                            content: Row(
+                              children: [
+                                ElevatedButton(
+                                  onPressed: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => SuccesPage(),
+                                      ),
+                                    );
+                                  },
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: primaryColor,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                  ),
+                                  child: Text(
+                                    'Ya Proses',
+                                    style: whiteTextStyle,
+                                  ),
+                                ),
+                                SizedBox(width: 11),
+                                OutlinedButton(
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                  },
+                                  style: OutlinedButton.styleFrom(
+                                    side: BorderSide(color: brightRedColor),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                  ),
+                                  child: Text(
+                                    'Batalkan',
+                                    style: TextStyle(
+                                      color: brightRedColor,
+                                      fontSize: 16,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          );
+                        },
+                      );
+                    },
+                    child: Text(
+                      'Beli',
+                      style: primaryTextStyle.copyWith(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
                   ),
                 ),

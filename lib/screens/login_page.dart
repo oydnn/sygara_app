@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:sygara_app/screens/Home/home_screen.dart';
+import 'package:sygara_app/screens/Profil/reset_password_page.dart';
+import 'package:sygara_app/screens/bottom_nav_bar.dart';
+import 'package:sygara_app/screens/register_page.dart';
 import 'package:sygara_app/themes/themes.dart';
 
 class LoginPage extends StatefulWidget {
@@ -18,20 +22,21 @@ class _LoginPageState extends State<LoginPage> {
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: ListView(
           children: [
-            SizedBox(height: 10,),
+            SizedBox(height: 10),
             //logo
-            Center(child: Image.asset('assets/logo.png'),),
-              SizedBox(height: 120,),
-              Text(
+            Center(child: Image.asset('assets/logo.png')),
+            SizedBox(height: 120),
+            Text(
               'Masuk',
               style: titleTextStyle.copyWith(
                 fontSize: 32,
                 fontWeight: FontWeight.w500,
               ),
             ),
-            SizedBox(height: 5,),
-            Text('Masuk ke akun terdaftar untuk lanjut',
-            style: blackTextStyle.copyWith(fontSize: 16),
+            SizedBox(height: 5),
+            Text(
+              'Masuk ke akun terdaftar untuk lanjut',
+              style: blackTextStyle.copyWith(fontSize: 16),
             ),
             //title
             SizedBox(height: 30),
@@ -90,37 +95,52 @@ class _LoginPageState extends State<LoginPage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                Text(
-              'Lupa Password?',
-              style: primaryTextStyle.copyWith(fontSize: 16), 
-            ),
+                InkWell(
+                  onTap: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => ResetPasswordPage()));
+                  },
+                  child: Text(
+                    'Lupa Password?',
+                    style: primaryTextStyle.copyWith(fontSize: 16),
+                  ),
+                ),
               ],
             ),
-            SizedBox(height: 42,),
+            SizedBox(height: 42),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
                 backgroundColor: primaryColor,
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10)
-                )
+                  borderRadius: BorderRadius.circular(10),
+                ),
               ),
-              onPressed: (){}, 
-              child: Text('Masuk', style: whiteTextStyle,)
-              ),
-              SizedBox(height: 142,),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text('Belum punya akun?', style: blackTextStyle.copyWith(fontSize: 16),),
-                  Text(' Daftar', style: TextStyle(
-                    color: primaryColor,
-                    fontSize: 16
-                  ),)
-                ],
-              ),
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => BottomNavBar()));
+              },
+              child: Text('Masuk', style: whiteTextStyle),
+            ),
+            SizedBox(height: 142),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  'Belum punya akun?',
+                  style: blackTextStyle.copyWith(fontSize: 16),
+                ),
+                InkWell(
+                  onTap: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => RegisterPage()));                    
+                  },
+                  child: Text(
+                    ' Daftar',
+                    style: TextStyle(color: primaryColor, fontSize: 16),
+                  ),
+                ),
+              ],
+            ),
           ],
         ),
-        ),
+      ),
     );
   }
 }

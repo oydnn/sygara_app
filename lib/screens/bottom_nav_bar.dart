@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sygara_app/screens/Cart/cart_page.dart';
 import 'package:sygara_app/screens/Home/home_screen.dart';
-import 'package:sygara_app/screens/Order/empty_order_page.dart';
+import 'package:sygara_app/screens/Order/order_page.dart';
 import 'package:sygara_app/screens/Profil/profil_page.dart';
 import 'package:sygara_app/themes/themes.dart';
 
@@ -18,7 +18,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
   final List<Widget> screenList = [
     HomeScreen(),
     CartPage(),
-    EmptyOrderPage(),
+    OrderPage(),
     ProfilPage(),
   ];
 
@@ -53,9 +53,10 @@ class _BottomNavBarState extends State<BottomNavBar> {
                 width: 20,
                 height: 20,
               ),
-              activeIcon: Image.asset('assets/icon/ic-home-green.png',
-              width: 20,
-              height: 20,
+              activeIcon: Image.asset(
+                'assets/icon/ic-home-green.png',
+                width: 20,
+                height: 20,
               ),
             ),
             BottomNavigationBarItem(
@@ -65,9 +66,10 @@ class _BottomNavBarState extends State<BottomNavBar> {
                 width: 20,
                 height: 20,
               ),
-              activeIcon: Image.asset('assets/icon/ic-cart-green.png',
-              width: 20,
-              height: 20,
+              activeIcon: Image.asset(
+                'assets/icon/ic-cart-green.png',
+                width: 20,
+                height: 20,
               ),
             ),
             BottomNavigationBarItem(
@@ -77,9 +79,10 @@ class _BottomNavBarState extends State<BottomNavBar> {
                 width: 20,
                 height: 20,
               ),
-              activeIcon: Image.asset('assets/icon/ic-pesanan-green.png', 
-              width: 20,
-              height: 20,
+              activeIcon: Image.asset(
+                'assets/icon/ic-pesanan-green.png',
+                width: 20,
+                height: 20,
               ),
             ),
             BottomNavigationBarItem(
@@ -89,10 +92,11 @@ class _BottomNavBarState extends State<BottomNavBar> {
                 width: 20,
                 height: 20,
               ),
-              activeIcon: Image.asset('assets/icon/ic-profil-green.png',
-              width: 20,
-              height: 20,
-              )
+              activeIcon: Image.asset(
+                'assets/icon/ic-profil-green.png',
+                width: 20,
+                height: 20,
+              ),
             ),
           ],
           currentIndex: selectedIndex,

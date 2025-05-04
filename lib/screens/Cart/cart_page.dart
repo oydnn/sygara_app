@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sygara_app/screens/checkout_page.dart';
 import 'package:sygara_app/themes/themes.dart';
 import 'package:sygara_app/widgets/card_widget.dart';
 
@@ -86,11 +87,19 @@ class CartPage extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: Center(
-                  child: Text(
-                    'Beli',
-                    style: primaryTextStyle.copyWith(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => CheckoutPage()),
+                      );
+                    },
+                    child: Text(
+                      'Beli',
+                      style: primaryTextStyle.copyWith(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
                   ),
                 ),

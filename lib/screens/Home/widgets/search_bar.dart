@@ -35,7 +35,10 @@ class MySearchBar extends StatelessWidget {
         SizedBox(width: 26),
         IconButton(
           onPressed: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) => NotifikasiPage()));
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => NotifikasiPage()),
+            );
           },
           icon: Image.asset('assets/icon/ic-notif.png', width: 45, height: 45),
         ),

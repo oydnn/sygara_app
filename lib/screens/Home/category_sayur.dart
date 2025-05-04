@@ -10,37 +10,36 @@ class CategorySayur extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Kategori Sayur-Mayur', style: greyTextStyle,),
+        title: Text('Kategori Sayur-Mayur', style: greyTextStyle),
         leading: IconButton(
-          onPressed: (){
+          onPressed: () {
             Navigator.pop(context);
-          }, 
+          },
           icon: Image.asset(
             'assets/icon/ic-arrow-back.png',
             width: 40,
             height: 40,
-            ),
           ),
+        ),
       ),
       body: Padding(
         padding: EdgeInsets.all(20),
-      child: GridView.builder(
-        itemCount: sayurProduct.length,
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          crossAxisSpacing: 20,
-          mainAxisSpacing: 17,
-          childAspectRatio: 176/209,
-          ), 
-        itemBuilder: (context, index){
-          final product = sayurProduct[index];
-          return ProductWidget(
-            imgUrl: product['imgUrl']!, 
-            nama: product['nama']!, 
-            harga: product['harga']!
+        child: GridView.builder(
+          itemCount: sayurProduct.length,
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            crossAxisSpacing: 20,
+            mainAxisSpacing: 17,
+            childAspectRatio: 176 / 209,
+          ),
+          itemBuilder: (context, index) {
+            final product = sayurProduct[index];
+            return ProductWidget(
+              imgUrl: product['imgUrl']!,
+              nama: product['nama']!,
+              harga: product['harga']!,
             );
-          
-        }
+          },
         ),
       ),
     );

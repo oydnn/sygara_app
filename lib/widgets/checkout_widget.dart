@@ -16,11 +16,7 @@ class CheckoutWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(
-        left: 16,
-        top: 20,
-        right: 17
-      ),
+      padding: const EdgeInsets.only(left: 16, top: 20, right: 17),
       child: Row(
         children: [
           Container(
@@ -32,20 +28,22 @@ class CheckoutWidget extends StatelessWidget {
             ),
             child: Image.asset(imageUrl),
           ),
-          SizedBox(width: 19,),
-          Text(nama,
-          style: blackTextStyle.copyWith(
-            fontSize: 16,
-            fontWeight: FontWeight.w600
-          ),
+          SizedBox(width: 19),
+          Text(
+            nama,
+            style: blackTextStyle.copyWith(
+              fontSize: 16,
+              fontWeight: FontWeight.w600,
+            ),
           ),
           Spacer(),
-          Text(harga, style: primaryTextStyle.copyWith(
-            fontSize: 16,
-            fontWeight: FontWeight.w600
+          Text(
+            harga,
+            style: primaryTextStyle.copyWith(
+              fontSize: 16,
+              fontWeight: FontWeight.w600,
+            ),
           ),
-          ),
-          
         ],
       ),
     );

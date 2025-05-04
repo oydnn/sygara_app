@@ -16,14 +16,15 @@ class ImageBanner extends StatelessWidget {
             left: 17,
             child: Column(
               children: [
-                Text('Produk Segar \nuntuk Keluarga!',
-                style: TextStyle(
-                  color: primaryColor,
-                  fontSize: 20,
-                  fontWeight: FontWeight.w600
+                Text(
+                  'Produk Segar \nuntuk Keluarga!',
+                  style: TextStyle(
+                    color: primaryColor,
+                    fontSize: 20,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
-                ),
-                SizedBox(height: 10,),
+                SizedBox(height: 10),
                 Container(
                   width: 133,
                   height: 30,
@@ -32,17 +33,18 @@ class ImageBanner extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: Center(
-                    child: Text('Belanja Sekarang!', 
-                    style: TextStyle(
-                      color: whiteColor,
-                      fontWeight: FontWeight.w400,
-                    ),
+                    child: Text(
+                      'Belanja Sekarang!',
+                      style: TextStyle(
+                        color: whiteColor,
+                        fontWeight: FontWeight.w400,
+                      ),
                     ),
                   ),
-                )
+                ),
               ],
             ),
-          )
+          ),
         ],
       ),
     );

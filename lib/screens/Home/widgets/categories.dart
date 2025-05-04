@@ -12,9 +12,11 @@ class Categories extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         InkWell(
-          onTap: (){
-            Navigator.push(context, MaterialPageRoute(builder: (context)
-            => CategoryBuah()));
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => CategoryBuah()),
+            );
           },
           child: Container(
             width: 176,
@@ -23,32 +25,37 @@ class Categories extends StatelessWidget {
               color: paleGreenColor,
               borderRadius: BorderRadius.circular(10),
             ),
-            child: Padding(padding: EdgeInsets.symmetric(horizontal: 13),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text('BUAH - \nBUAHAN', 
-                style: TextStyle(
-                  color: primaryColor,
-                  fontSize: 20, fontWeight: FontWeight.w700
-                ),
-                ),
-                Image.asset('assets/img-category-buah.png',
-                width: 52,
-                height: 52,
-                ),
-              ],
-            ),
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 13),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'BUAH - \nBUAHAN',
+                    style: TextStyle(
+                      color: primaryColor,
+                      fontSize: 20,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                  Image.asset(
+                    'assets/img-category-buah.png',
+                    width: 52,
+                    height: 52,
+                  ),
+                ],
+              ),
             ),
           ),
         ),
-        
 
         //eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
         InkWell(
-          onTap: (){
-            Navigator.push(context, MaterialPageRoute(builder: (context)
-            => CategorySayur()));
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => CategorySayur()),
+            );
           },
           child: Container(
             width: 176,
@@ -57,22 +64,26 @@ class Categories extends StatelessWidget {
               color: paleGreenColor,
               borderRadius: BorderRadius.circular(10),
             ),
-            child: Padding(padding: EdgeInsets.symmetric(horizontal: 13),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text('SAYUR - \nMAYUR', 
-                style: TextStyle(
-                  color: primaryColor,
-                  fontSize: 20, fontWeight: FontWeight.w700
-                ),
-                ),
-                Image.asset('assets/img-category-sayur.png',
-                width: 52,
-                height: 52,
-                ),
-              ],
-            ),
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 13),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'SAYUR - \nMAYUR',
+                    style: TextStyle(
+                      color: primaryColor,
+                      fontSize: 20,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                  Image.asset(
+                    'assets/img-category-sayur.png',
+                    width: 52,
+                    height: 52,
+                  ),
+                ],
+              ),
             ),
           ),
         ),

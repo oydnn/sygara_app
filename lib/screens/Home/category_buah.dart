@@ -10,37 +10,36 @@ class CategoryBuah extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Kategori Buah-Buahan', style: greyTextStyle,),
+        title: Text('Kategori Buah-Buahan', style: greyTextStyle),
         leading: IconButton(
-          onPressed: (){
+          onPressed: () {
             Navigator.pop(context);
-          }, 
+          },
           icon: Image.asset(
             'assets/icon/ic-arrow-back.png',
             width: 40,
             height: 40,
-            ),
           ),
+        ),
       ),
       body: Padding(
         padding: EdgeInsets.all(20),
-      child: GridView.builder(
-        itemCount: buahProduct.length,
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          crossAxisSpacing: 20,
-          mainAxisSpacing: 17,
-          childAspectRatio: 176/209,
-          ), 
-        itemBuilder: (context, index){
-          final product = buahProduct[index];
-          return ProductWidget(
-            imgUrl: product['imgUrl']!, 
-            nama: product['nama']!, 
-            harga: product['harga']!
+        child: GridView.builder(
+          itemCount: buahProduct.length,
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            crossAxisSpacing: 20,
+            mainAxisSpacing: 17,
+            childAspectRatio: 176 / 209,
+          ),
+          itemBuilder: (context, index) {
+            final product = buahProduct[index];
+            return ProductWidget(
+              imgUrl: product['imgUrl']!,
+              nama: product['nama']!,
+              harga: product['harga']!,
             );
-          
-        }
+          },
         ),
       ),
     );

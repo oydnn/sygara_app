@@ -49,7 +49,7 @@ class _DetailPageState extends State<DetailPage> {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Center(child: Image.asset('assets/img-bayam.png',)),
+              Center(child: Image.asset('assets/img-bayam.png')),
               SizedBox(height: 11),
               Text(
                 'Bayam',
@@ -159,24 +159,30 @@ class _DetailPageState extends State<DetailPage> {
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Harga', style: whiteTextStyle,),
-                Text('Rp. 15.000', style: whiteTextStyle.copyWith(
-                  fontSize: 24,
-                  fontWeight: FontWeight.w600
-                ),)
+                Text('Harga', style: whiteTextStyle),
+                Text(
+                  'Rp. 15.000',
+                  style: whiteTextStyle.copyWith(
+                    fontSize: 24,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
               ],
             ),
             InkWell(
-              onTap: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context) => CartPage()));
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => CartPage()),
+                );
                 showDialog(
-                  context: context, 
-                  builder: (BuildContext context){
+                  context: context,
+                  builder: (BuildContext context) {
                     return AlertDialog(
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
-                      contentPadding: EdgeInsets.only(left:16, right: 25),
+                      contentPadding: EdgeInsets.only(left: 16, right: 25),
                       content: SizedBox(
                         height: 65,
                         width: 372,
@@ -188,17 +194,20 @@ class _DetailPageState extends State<DetailPage> {
                               color: primaryColor,
                               size: 23,
                             ),
-                            SizedBox(width: 5,),
-                            Text('Produk berhasil ditambah ke keranjang!', style: blackTextStyle.copyWith(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w600,
-                            ),)
+                            SizedBox(width: 5),
+                            Text(
+                              'Produk berhasil ditambah ke keranjang!',
+                              style: blackTextStyle.copyWith(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
                           ],
                         ),
                       ),
                     );
                   },
-                  );
+                );
               },
               child: Container(
                 width: 176,
@@ -206,16 +215,18 @@ class _DetailPageState extends State<DetailPage> {
                 decoration: BoxDecoration(
                   color: whiteColor,
                   borderRadius: BorderRadius.circular(10),
-              
                 ),
                 child: Center(
-                  child: Text('+Keranjang', style: primaryTextStyle.copyWith(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600
-                  ),),
+                  child: Text(
+                    '+Keranjang',
+                    style: primaryTextStyle.copyWith(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),

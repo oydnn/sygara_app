@@ -74,7 +74,7 @@ class _CardWidgetState extends State<CardWidget> {
                     child: IconButton(
                       padding: EdgeInsets.zero,
                       onPressed: decrement,
-                      icon: Image.asset('assets/icon/ic-minus.png',),
+                      icon: Image.asset('assets/icon/ic-minus.png'),
                     ),
                   ),
                   Padding(

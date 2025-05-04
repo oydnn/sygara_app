@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:sygara_app/screens/bottom_nav_bar.dart';
+import 'package:sygara_app/screens/login_page.dart';
 import 'package:sygara_app/themes/themes.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -155,40 +157,55 @@ class _RegisterPageState extends State<RegisterPage> {
                     });
                   },
                   icon: Icon(
-                    _obscureConfirmPassword ? Icons.visibility : Icons.visibility_off,
+                    _obscureConfirmPassword
+                        ? Icons.visibility
+                        : Icons.visibility_off,
                     color: secondaryColor,
                   ),
                 ),
               ),
             ),
-            SizedBox(height: 20,),
+            SizedBox(height: 20),
             //button daftar
             ElevatedButton(
               style: ElevatedButton.styleFrom(
                 backgroundColor: primaryColor,
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10)
-                )
+                  borderRadius: BorderRadius.circular(10),
+                ),
               ),
-              onPressed: (){}, 
-              child: Text('Daftar', style: whiteTextStyle,)
-              ),
-              SizedBox(height: 15,),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text('Sudah punya akun?', style: blackTextStyle.copyWith(fontSize: 16),),
-                  Text(' Masuk', style: TextStyle(
-                    color: primaryColor,
-                    fontSize: 16
-                  ),)
-                ],
-              ),
-              SizedBox(height: 10,),
-              Text('*Informasi pengguna untuk keperluan pengiriman \n'
-              'dan promosi terkait produk', style: secondaryTextStyle.copyWith(
-                fontSize: 16,
-              ),)
+              onPressed: () {
+                Navigator.push(context, 
+                MaterialPageRoute(builder: (context) => BottomNavBar()));
+              },
+              child: Text('Daftar', style: whiteTextStyle),
+            ),
+            SizedBox(height: 15),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  'Sudah punya akun?',
+                  style: blackTextStyle.copyWith(fontSize: 16),
+                ),
+                InkWell(
+                  onTap: () {
+                    Navigator.push(context, 
+                    MaterialPageRoute(builder: (context) => LoginPage()));
+                  },
+                  child: Text(
+                    ' Masuk',
+                    style: TextStyle(color: primaryColor, fontSize: 16),
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: 10),
+            Text(
+              '*Informasi pengguna untuk keperluan pengiriman \n'
+              'dan promosi terkait produk',
+              style: secondaryTextStyle.copyWith(fontSize: 16),
+            ),
           ],
         ),
       ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sygara_app/screens/Home/home_screen.dart';
+import 'package:sygara_app/screens/Order/order_page.dart';
 import 'package:sygara_app/themes/themes.dart';
 
 class SuccesPage extends StatelessWidget {
@@ -63,7 +64,10 @@ class SuccesPage extends StatelessWidget {
             height: 45,
             child: TextButton(
               onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen()));
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => OrderPage()),
+                );
               },
               style: TextButton.styleFrom(
                 backgroundColor: primaryColor,

@@ -12,13 +12,14 @@ class EmptyOrderPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset('assets/img-empty.png'),
-            SizedBox(height: 40,),
-            Text('Belum ada pesanan...', style: greyTextStyle.copyWith(
-              fontSize: 24,
-              fontWeight: FontWeight.w500
+            SizedBox(height: 40),
+            Text(
+              'Belum ada pesanan...',
+              style: greyTextStyle.copyWith(
+                fontSize: 24,
+                fontWeight: FontWeight.w500,
+              ),
             ),
-            ),
-            
           ],
         ),
       ),

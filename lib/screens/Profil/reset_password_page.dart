@@ -112,7 +112,9 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
           borderRadius: BorderRadius.circular(10),
         ),
         child: TextButton(
-          onPressed: (){},
+          onPressed: () {
+            Navigator.pop(context);
+          },
           child: Text('Simpan Perubahan', style: whiteTextStyle),
         ),
       ),
