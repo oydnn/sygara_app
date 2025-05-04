@@ -7,18 +7,20 @@ class EmptyOrderPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Image.asset('assets/img-empty.jpg'),
-          SizedBox(height: 40,),
-          Text('Belum ada pesanan...', style: greyTextStyle.copyWith(
-            fontSize: 24,
-            fontWeight: FontWeight.w500
-          ),
-          ),
-          
-        ],
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset('assets/img-empty.png'),
+            SizedBox(height: 40,),
+            Text('Belum ada pesanan...', style: greyTextStyle.copyWith(
+              fontSize: 24,
+              fontWeight: FontWeight.w500
+            ),
+            ),
+            
+          ],
+        ),
       ),
     );
   }

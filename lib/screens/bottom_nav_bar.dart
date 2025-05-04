@@ -47,19 +47,27 @@ class _BottomNavBarState extends State<BottomNavBar> {
         child: BottomNavigationBar(
           items: [
             BottomNavigationBarItem(
-              label: 'Home',
+              label: 'Beranda',
               icon: Image.asset(
                 'assets/icon/ic-home.png',
                 width: 20,
                 height: 20,
               ),
+              activeIcon: Image.asset('assets/icon/ic-home-green.png',
+              width: 20,
+              height: 20,
+              ),
             ),
             BottomNavigationBarItem(
-              label: 'Cart',
+              label: 'Keranjang',
               icon: Image.asset(
                 'assets/icon/ic-cart.png',
                 width: 20,
                 height: 20,
+              ),
+              activeIcon: Image.asset('assets/icon/ic-cart-green.png',
+              width: 20,
+              height: 20,
               ),
             ),
             BottomNavigationBarItem(
@@ -69,6 +77,10 @@ class _BottomNavBarState extends State<BottomNavBar> {
                 width: 20,
                 height: 20,
               ),
+              activeIcon: Image.asset('assets/icon/ic-pesanan-green.png', 
+              width: 20,
+              height: 20,
+              ),
             ),
             BottomNavigationBarItem(
               label: 'Profil',
@@ -77,6 +89,10 @@ class _BottomNavBarState extends State<BottomNavBar> {
                 width: 20,
                 height: 20,
               ),
+              activeIcon: Image.asset('assets/icon/ic-profil-green.png',
+              width: 20,
+              height: 20,
+              )
             ),
           ],
           currentIndex: selectedIndex,
