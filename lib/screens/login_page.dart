@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:sygara_app/controllers/auth_controller.dart';
 import 'package:sygara_app/screens/Home/home_screen.dart';
 import 'package:sygara_app/screens/Profil/reset_password_page.dart';
 import 'package:sygara_app/screens/bottom_nav_bar.dart';
@@ -14,6 +16,12 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   bool _obscurePassword = true;
+
+  // panggil AuthController
+  final authC = Get.put(AuthController());
+
+  // membuat key validation untuk form
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -40,10 +48,27 @@ class _LoginPageState extends State<LoginPage> {
             ),
             //title
             SizedBox(height: 30),
+
+            //buat form
+            Form(
+              key: _formKey,
+              child: 
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
             //form email
             Text('Email', style: titleTextStyle),
             SizedBox(height: 10),
             TextFormField(
+              // untuk setting validasi inputan, misal : saat kosong, dsb
+              validator: (value) {
+                if(value!.isEmpty){
+                  return 'Email harus diisi!';
+                }
+                return null;
+              },
+              // parameter controller untuk memberikan nama/id dari sebuah TextFormField
+              controller: authC.email,
               keyboardType: TextInputType.emailAddress,
               decoration: InputDecoration(
                 enabledBorder: OutlineInputBorder(
@@ -52,6 +77,14 @@ class _LoginPageState extends State<LoginPage> {
                 ),
 
                 focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                  borderSide: BorderSide(color: secondaryColor, width: 1.5),
+                ),
+                errorBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                  borderSide: BorderSide(color: secondaryColor, width: 1.5),
+                ),
+                focusedErrorBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
                   borderSide: BorderSide(color: secondaryColor, width: 1.5),
                 ),
@@ -64,6 +97,14 @@ class _LoginPageState extends State<LoginPage> {
             Text('Password', style: titleTextStyle),
             SizedBox(height: 8),
             TextFormField(
+              validator: (value) {
+                if(value!.isEmpty){
+                  return 'Password harus diisi!';
+                }
+                return null;
+              },
+              // parameter controller untuk memberikan nama/id dari sebuah TextFormField
+              controller: authC.password,
               obscureText: _obscurePassword,
               keyboardType: TextInputType.visiblePassword,
               decoration: InputDecoration(
@@ -73,6 +114,14 @@ class _LoginPageState extends State<LoginPage> {
                 ),
 
                 focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                  borderSide: BorderSide(color: secondaryColor, width: 1.5),
+                ),
+                errorBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                  borderSide: BorderSide(color: secondaryColor, width: 1.5),
+                ),
+                focusedErrorBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
                   borderSide: BorderSide(color: secondaryColor, width: 1.5),
                 ),
@@ -96,8 +145,13 @@ class _LoginPageState extends State<LoginPage> {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 InkWell(
-                  onTap: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => ResetPasswordPage()));
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ResetPasswordPage(),
+                      ),
+                    );
                   },
                   child: Text(
                     'Lupa Password?',
@@ -107,18 +161,39 @@ class _LoginPageState extends State<LoginPage> {
               ],
             ),
             SizedBox(height: 42),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: primaryColor,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
+            SizedBox(
+              height: 45,
+              width: double.infinity,
+              child: Obx(
+                () => ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: primaryColor,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                  onPressed: () {
+                    // Navigator.push(context, MaterialPageRoute(builder: (context) => BottomNavBar()));
+                    // panggil function validation form
+                    if(_formKey.currentState!.validate()){
+                      _formKey.currentState!.save();
+                    }
+                    authC.login();
+                  },
+                  child: 
+                  authC.loading == true
+                  ? CircularProgressIndicator(color: whiteColor,)
+                  :Text('Masuk', style: whiteTextStyle),
+                  
+                  
                 ),
               ),
-              onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => BottomNavBar()));
-              },
-              child: Text('Masuk', style: whiteTextStyle),
             ),
+
+                ],
+            )
+            ),
+
             SizedBox(height: 142),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -129,7 +204,10 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 InkWell(
                   onTap: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => RegisterPage()));                    
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => RegisterPage()),
+                    );
                   },
                   child: Text(
                     ' Daftar',

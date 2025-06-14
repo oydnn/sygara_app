@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sp_util/sp_util.dart';
 import 'package:sygara_app/screens/Profil/edit_profil_page.dart';
 import 'package:sygara_app/screens/Profil/reset_password_page.dart';
 import 'package:sygara_app/screens/splash_screen.dart';
@@ -54,7 +55,7 @@ class ProfilPage extends StatelessWidget {
                   ),
                   SizedBox(height: 6),
                   Text(
-                    'Ahmad Fulan',
+                    SpUtil.getString('userName').toString(),
                     style: blackTextStyle.copyWith(
                       fontSize: 16,
                       fontWeight: FontWeight.w600,
@@ -190,6 +191,11 @@ class ProfilPage extends StatelessWidget {
                                     ),
                                   ),
                                   onPressed: () {
+                                    // remove data SpUtil
+                                    SpUtil.remove('idUser');
+                                    SpUtil.remove('email');
+                                    SpUtil.remove('name');
+                                    SpUtil.remove('telepon');
                                     Navigator.push(context, MaterialPageRoute(builder: (context) => SplashScreen()));
                                   },
                                   child: Text(

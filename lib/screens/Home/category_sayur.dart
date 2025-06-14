@@ -34,11 +34,11 @@ class CategorySayur extends StatelessWidget {
           ),
           itemBuilder: (context, index) {
             final product = sayurProduct[index];
-            return ProductWidget(
-              imgUrl: product['imgUrl']!,
-              nama: product['nama']!,
-              harga: product['harga']!,
-            );
+            // return ProductWidget(
+            //   imgUrl: product['imgUrl']!,
+            //   nama: product['nama']!,
+            //   harga: product['harga']!,
+            // );
           },
         ),
       ),

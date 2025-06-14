@@ -35,6 +35,18 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
   google_fonts: ^6.2.1
+  # http => untuk digunakan agar flutter bisa terhubung dengan web service
+  http: ^1.4.0
+  # get => untuk membantu ngoding function, action desain dll (bisa digunakan untuk state management)
+  get: ^4.7.2
+  # sp_util => untuk menyimpan data ke storage device
+  sp_util: ^2.0.3
+  # untuk format currency
+  intl: ^0.20.2
+  # flutter_widget_from_html => untuk convert html to plain text
+  flutter_widget_from_html: ^0.16.0
+  # html => untuk convert html to plain text
+  html: ^0.15.4
 
 dev_dependencies:
   flutter_test:

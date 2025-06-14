@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
+import 'package:sygara_app/config/config.dart';
+import 'package:sygara_app/models/Product_model.dart';
 import 'package:sygara_app/screens/Cart/cart_page.dart';
 import 'package:sygara_app/themes/themes.dart';
 
 class DetailPage extends StatefulWidget {
-  const DetailPage({super.key});
+  const DetailPage({super.key, required this.productModel});
+
+  // panggil Product_model
+  final ProductModel productModel;
 
   @override
   State<DetailPage> createState() => _DetailPageState();
@@ -49,10 +55,10 @@ class _DetailPageState extends State<DetailPage> {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Center(child: Image.asset('assets/img-bayam.png')),
+              Center(child: Image.network(widget.productModel.gambar.toString())),
               SizedBox(height: 11),
               Text(
-                'Bayam',
+                widget.productModel.namaProduct.toString(),
                 style: titleTextStyle.copyWith(
                   fontSize: 24,
                   fontWeight: FontWeight.w600,
@@ -60,7 +66,7 @@ class _DetailPageState extends State<DetailPage> {
               ),
               SizedBox(height: 8),
               Text(
-                'Kategori : Sayur Mayur',
+                'Kategori : ' + widget.productModel.merk!.merkProduct.toString(),
                 style: blackTextStyle.copyWith(
                   fontSize: 16,
                   fontWeight: FontWeight.w400,
@@ -75,13 +81,8 @@ class _DetailPageState extends State<DetailPage> {
                 ),
               ),
               SizedBox(height: 8),
-              Text(
-                'Nikmati sayur bayam segar langsung dari kebun dengan \nrasa yang segar.',
-                style: blackTextStyle.copyWith(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w400,
-                ),
-              ),
+                HtmlWidget(widget.productModel.spesifikasi!),
+              
               SizedBox(height: 15),
               Text(
                 'Harga/Kg',
@@ -92,7 +93,7 @@ class _DetailPageState extends State<DetailPage> {
               ),
               SizedBox(height: 8),
               Text(
-                'Rp. 15.000',
+                Config.convertToIdr(widget.productModel.harga, 0),
                 style: primaryTextStyle.copyWith(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,

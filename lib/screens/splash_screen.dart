@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/route_manager.dart';
+import 'package:sygara_app/screens/bottom_nav_bar.dart';
 import 'package:sygara_app/screens/login_page.dart';
 import 'package:sygara_app/themes/themes.dart';
-
+import 'package:sp_util/sp_util.dart';
+import 'package:get/get.dart';
 import 'dart:async';
 
 class SplashScreen extends StatefulWidget {
@@ -21,10 +24,19 @@ class _SplashScreenState extends State<SplashScreen> {
 
   void movingPage() {
     Timer(Duration(seconds: 2), () {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => LoginPage()),
-      );
+
+      // ambil data parameter yang telah tersimpan oleh SpUtil yang dibuat di AuthContoller
+      // jika email == null | '', maka redirect ke halaman login
+      if(SpUtil.getString('email') == null || SpUtil.getString('email') == ''){
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => LoginPage()),
+        );
+      } else {
+        Get.offAll(BottomNavBar());
+      }
+
+      
     });
   }
 
