@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:sygara_app/config/config.dart';
+import 'package:sygara_app/controllers/cart_controller.dart';
 import 'package:sygara_app/models/Product_model.dart';
 import 'package:sygara_app/screens/Cart/cart_page.dart';
 import 'package:sygara_app/themes/themes.dart';
@@ -16,11 +19,29 @@ class DetailPage extends StatefulWidget {
 }
 
 class _DetailPageState extends State<DetailPage> {
+
+  // siapkan variabel untuk emnampung nilai awal dari harga product dan harga product yang akan diupdate
+  int priceFirst = 0; // meanmpung harga awal/asli dari product
+  int priceUpdate = 0; // menampung harga product setelah diupdate (diklik + atau -)
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    priceFirst = widget.productModel.harga!; // isikan variabel priceFIrst dengan mengambil nilai dari productModel.harga
+    priceUpdate = widget.productModel.harga!; // isian variabel priceUpdate dengan mengambil nilai dari productModel.harga
+    super.initState();
+  }
+
+  // panggil CartController
+  final cartC = Get.put(CartController());
+
   int quantity = 1;
   void increment() {
     if (quantity < 10) {
       setState(() {
         quantity++;
+        // ubah nilai priceUpdate yang tadinya mengambil nilai dari productModel.harga, diubah menjadi priceFirst * quantity (menyesuaikan harga dikali quantitiy yang diset)
+        priceUpdate = priceFirst * quantity;
       });
     }
   }
@@ -29,6 +50,8 @@ class _DetailPageState extends State<DetailPage> {
     if (quantity > 1) {
       setState(() {
         quantity--;
+        // ubah nilai priceUpdate yang tadinya mengambil nilai dari priceFirst * quantitiy, menjadi priceUpdate - priceFirst
+        priceUpdate = priceUpdate - priceFirst;
       });
     }
   }
@@ -162,7 +185,7 @@ class _DetailPageState extends State<DetailPage> {
               children: [
                 Text('Harga', style: whiteTextStyle),
                 Text(
-                  'Rp. 15.000',
+                  Config.convertToIdr(priceUpdate, 0),
                   style: whiteTextStyle.copyWith(
                     fontSize: 24,
                     fontWeight: FontWeight.w600,
@@ -172,44 +195,47 @@ class _DetailPageState extends State<DetailPage> {
             ),
             InkWell(
               onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => CartPage()),
-                );
-                showDialog(
-                  context: context,
-                  builder: (BuildContext context) {
-                    return AlertDialog(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      contentPadding: EdgeInsets.only(left: 16, right: 25),
-                      content: SizedBox(
-                        height: 65,
-                        width: 372,
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Icon(
-                              Icons.check_circle,
-                              color: primaryColor,
-                              size: 23,
-                            ),
-                            SizedBox(width: 5),
-                            Text(
-                              'Produk berhasil ditambah ke keranjang!',
-                              style: blackTextStyle.copyWith(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    );
-                  },
-                );
-              },
+              //   Navigator.push(
+              //     context,
+              //     MaterialPageRoute(builder: (context) => CartPage()),
+              //   );
+              //   showDialog(
+              //     context: context,
+              //     builder: (BuildContext context) {
+              //       return AlertDialog(
+              //         shape: RoundedRectangleBorder(
+              //           borderRadius: BorderRadius.circular(10),
+              //         ),
+              //         contentPadding: EdgeInsets.only(left: 16, right: 25),
+              //         content: SizedBox(
+              //           height: 65,
+              //           width: 372,
+              //           child: Row(
+              //             mainAxisSize: MainAxisSize.min,
+              //             children: [
+              //               Icon(
+              //                 Icons.check_circle,
+              //                 color: primaryColor,
+              //                 size: 23,
+              //               ),
+              //               SizedBox(width: 5),
+              //               Text(
+              //                 'Produk berhasil ditambah ke keranjang!',
+              //                 style: blackTextStyle.copyWith(
+              //                   fontSize: 14,
+              //                   fontWeight: FontWeight.w600,
+              //                 ),
+              //               ),
+              //             ],
+              //           ),
+              //         ),
+              //       );
+              //     },
+              //   );
+
+              // panggil funsgi postCart() yang ada di cart_controller
+              cartC.postCart(widget.productModel.id.toString(), quantity.toString());
+               },
               child: Container(
                 width: 176,
                 height: 45,

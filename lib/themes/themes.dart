@@ -13,6 +13,7 @@ Color redColor = const Color(0xffE63232);
 Color mintGreenColor = const Color(0xffE8FFF6);
 Color whiteColor = const Color(0xffFFFFFF);
 Color paleGreenColor = const Color(0xffF2F5E2);
+Color blueColor = Colors.blue;
 
 TextStyle titleTextStyle = GoogleFonts.outfit(
   color: blackColor,
@@ -43,6 +44,11 @@ TextStyle primaryTextStyle = GoogleFonts.outfit(
 );
 TextStyle yellowTextStyle = GoogleFonts.outfit(
   color: yellowColor,
+  fontWeight: FontWeight.w500,
+  fontSize: 14,
+);
+TextStyle blueTextStyle = GoogleFonts.outfit(
+  color: blueColor,
   fontWeight: FontWeight.w500,
   fontSize: 14,
 );

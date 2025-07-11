@@ -43,7 +43,7 @@ class ProductWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             // Image.asset(imgUrl),
-            Image.network(productModel.gambar.toString()),  
+            // Image.network(productModel.gambar.toString()),  
             Text(
               productModel.namaProduct.toString(),
               style: blackTextStyle.copyWith(

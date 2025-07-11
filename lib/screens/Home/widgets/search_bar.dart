@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:sygara_app/screens/Home/notifikasi_page.dart';
+import 'package:sygara_app/screens/search_page.dart';
 import 'package:sygara_app/themes/themes.dart';
 
 class MySearchBar extends StatelessWidget {
@@ -7,6 +9,10 @@ class MySearchBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    // siapkan variabel untuk menampung data inputan di form pencarian
+    TextEditingController keyword = TextEditingController();
+
     return Row(
       children: [
         Container(
@@ -20,6 +26,12 @@ class MySearchBar extends StatelessWidget {
           child: Padding(
             padding: EdgeInsets.only(left: 16),
             child: TextField(
+              controller: keyword,
+              onSubmitted: (value) {
+                if(value.isNotEmpty){
+                  Get.to(SearchPage(keywordYgditerima: value,));
+                }
+              },
               decoration: InputDecoration(
                 border: InputBorder.none,
                 hintText: 'cari apa? (cth. bayam, apel, etc.)',

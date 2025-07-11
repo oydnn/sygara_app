@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:sp_util/sp_util.dart';
+import 'package:sygara_app/controllers/auth_controller.dart';
 import 'package:sygara_app/screens/Profil/edit_profil_page.dart';
 import 'package:sygara_app/screens/Profil/reset_password_page.dart';
 import 'package:sygara_app/screens/splash_screen.dart';
@@ -10,6 +13,10 @@ class ProfilPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    // panggil auth_controller
+    final authC = Get.put(AuthController());
+
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -191,12 +198,9 @@ class ProfilPage extends StatelessWidget {
                                     ),
                                   ),
                                   onPressed: () {
-                                    // remove data SpUtil
-                                    SpUtil.remove('idUser');
-                                    SpUtil.remove('email');
-                                    SpUtil.remove('name');
-                                    SpUtil.remove('telepon');
-                                    Navigator.push(context, MaterialPageRoute(builder: (context) => SplashScreen()));
+                                    
+                                    authC.logout();
+                                    
                                   },
                                   child: Text(
                                     'Yakin',

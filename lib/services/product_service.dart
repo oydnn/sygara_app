@@ -99,4 +99,37 @@ class ProductService {
     }
     return listProduct;
   }
+
+  // ===============================================================================
+
+  static Future<List<ProductModel>> getProductSearch(String keyword) async{
+    // buat variabel untuk menampung data list productnya
+    List<ProductModel> listProduct = [];
+
+    // request ke API
+    try {
+      // buat variabel untuk request ke API
+      var response = await http.get(Uri.parse(Config().urlProductSearch + keyword));
+      // jika statuscode = 200, maka ambil datanya
+      if (response.statusCode == 200) {
+        // ambil isi body dari json yang didapatkan
+        var responseBody = json.decode(response.body);
+
+        // buat variabel untuk menampung isi dari response body
+        // sesuaikan key yang akan diambil => 'data'
+        List listProductSayur = responseBody['data'];
+
+        // isikan variabel listProduct yang tadinya kosong dengan isian yang didapatkan dari json, ada pada variabel listProductRekomendasi
+        listProductSayur.forEach((data){
+          // panggil variabel listProduct dan add isinya
+        listProduct.add(ProductModel.fromJson(data));
+        });
+        } else {
+          listProduct = [];
+        }
+    } catch (e) {
+      print(e);
+    }
+    return listProduct;
+  }
 }

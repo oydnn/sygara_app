@@ -1,15 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:sygara_app/config/config.dart';
+import 'package:sygara_app/models/Checkout_model.dart';
 import 'package:sygara_app/themes/themes.dart';
 
 class OrderWidget extends StatelessWidget {
-  final String tanggal, items, totalHarga, status;
+  // final String tanggal, items, totalHarga, status;
+
+  final String status;
+  final CheckoutModel dataCheckout;
 
   const OrderWidget({
-    super.key,
-    required this.tanggal,
-    required this.items,
-    required this.totalHarga,
-    required this.status,
+    super.key, 
+    required this.dataCheckout, required this.status,
+
+    // required this.tanggal,
+    // required this.items,
+    // required this.totalHarga,
+    // required this.status,
   });
 
   @override
@@ -34,7 +41,7 @@ class OrderWidget extends StatelessWidget {
           ),
           SizedBox(height: 4),
           Text(
-            tanggal,
+            dataCheckout.createdAt.toString(),
             style: greyTextStyle.copyWith(
               fontSize: 12,
               fontWeight: FontWeight.w400,
@@ -45,7 +52,8 @@ class OrderWidget extends StatelessWidget {
           SizedBox(height: 16),
           Row(
             children: [
-              Image.asset('assets/img-order.png', width: 51, height: 51),
+              // Image.asset('assets/img-order.png', width: 51, height: 51),
+              Image.network(dataCheckout.item!.gambar.toString(), width: 51, height: 51),
               SizedBox(width: 37),
               Expanded(
                 child: Column(
@@ -60,7 +68,7 @@ class OrderWidget extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      items,
+                      dataCheckout.item!.namaProduct.toString(),
                       style: greyTextStyle.copyWith(
                         fontSize: 14,
                         fontWeight: FontWeight.w600,
@@ -84,7 +92,7 @@ class OrderWidget extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    totalHarga,
+                    Config.convertToIdr(dataCheckout.grandTotal, 0),
                     style: greyTextStyle.copyWith(
                       fontSize: 14,
                       fontWeight: FontWeight.w600,
@@ -100,7 +108,7 @@ class OrderWidget extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10),
                   border: Border.all(
                     //logika untuk border
-                    color: status == 'Diproses' ? yellowColor : primaryColor,
+                    color: status == 'Diproses' ? yellowColor : status == 'Baru' ? blueColor : primaryColor,
                     width: 2,
                   ),
                 ),
@@ -110,7 +118,7 @@ class OrderWidget extends StatelessWidget {
                     status,
                     style:
                         status == 'Diproses'
-                            ? yellowTextStyle
+                            ? yellowTextStyle : status == 'Baru' ? blueTextStyle
                             : primaryTextStyle,
                   ),
                 ),

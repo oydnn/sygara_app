@@ -1,15 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:sygara_app/config/config.dart';
+import 'package:sygara_app/models/Cart_model.dart';
 import 'package:sygara_app/themes/themes.dart';
 
 class CardWidget extends StatefulWidget {
-  final String imageUrl;
-  final String nama;
-  final String totalHarga;
+  // final String imageUrl;
+  // final String nama;
+  // final String totalHarga;
+
+  // panggil CartModel
+  final CartModel dataKeranjang;
+
   const CardWidget({
-    super.key,
-    required this.imageUrl,
-    required this.nama,
-    required this.totalHarga,
+    super.key, required this.dataKeranjang,
+
+    // required this.imageUrl,
+    // required this.nama,
+    // required this.totalHarga,
   });
 
   @override
@@ -17,19 +24,31 @@ class CardWidget extends StatefulWidget {
 }
 
 class _CardWidgetState extends State<CardWidget> {
+
+
   int quantity = 1;
+  int jumlahPerItem = 0;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    jumlahPerItem = widget.dataKeranjang.jumlah!;
+  }
+
+
   void increment() {
-    if (quantity < 10) {
+    if (jumlahPerItem < 10) {
       setState(() {
-        quantity++;
+        jumlahPerItem++;
       });
     }
   }
 
   void decrement() {
-    if (quantity > 1) {
+    if (jumlahPerItem > 1) {
       setState(() {
-        quantity--;
+        jumlahPerItem--;
       });
     }
   }
@@ -37,8 +56,9 @@ class _CardWidgetState extends State<CardWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: EdgeInsets.only(bottom: 15),
       width: 372,
-      height: 155,
+      // height: 155,
       padding: EdgeInsets.all(10),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
@@ -46,14 +66,15 @@ class _CardWidgetState extends State<CardWidget> {
       ),
       child: Row(
         children: [
-          Image.asset(widget.imageUrl, width: 176, height: 155),
+          // Image.asset(widget.imageUrl, width: 176, height: 155),
+          Image.network(widget.dataKeranjang.gambar.toString(), width: 176, height: 155),
           SizedBox(width: 12),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                widget.nama,
+                widget.dataKeranjang.namaProduct.toString(),
                 style: blackTextStyle.copyWith(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
@@ -80,7 +101,7 @@ class _CardWidgetState extends State<CardWidget> {
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 10),
                     child: Text(
-                      quantity.toString(),
+                      jumlahPerItem.toString(),
                       style: blackTextStyle.copyWith(
                         fontSize: 16,
                         fontWeight: FontWeight.w500,
@@ -106,7 +127,14 @@ class _CardWidgetState extends State<CardWidget> {
                 ),
               ),
               Text(
-                widget.totalHarga,
+                Config.convertToIdr(widget.dataKeranjang.hargaSatuan, 0) + ' x ' + jumlahPerItem.toString(),
+                style: blackTextStyle.copyWith(
+                  fontSize: 12,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+              Text(
+                Config.convertToIdr(widget.dataKeranjang.totalharga, 0),
                 style: blackTextStyle.copyWith(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
